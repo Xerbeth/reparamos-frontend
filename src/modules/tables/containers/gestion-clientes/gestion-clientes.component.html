@@ -1,0 +1,18 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Gestión Clientes" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <sb-card>
+    <div class="btn-group btn-group-toggle mb-4">
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton> 
+          Agregar Cliente
+        </label>
+    </div>
+    <div class="card-header">
+        <fa-icon class="mr-1" [icon]='["fas", "table"]'></fa-icon>
+        Lista de Clientes
+    </div>
+    <div class="card-body">
+        <sb-ng-bootstrap-table [pageSize]="6"></sb-ng-bootstrap-table>
+    </div>
+    </sb-card>
+</sb-layout-dashboard>

@@ -2,9 +2,11 @@ import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 
 export const sideNavSections: SideNavSection[] = [
     {
-        text: 'CORE',
-        items: ['dashboard'],
+        text: 'Reparamos',
+        items: ['dashboard','reparaciones','reportes','clientes'],
     },
+    /*
+    @TODO: Eliminar
     {
         text: 'INTERFACE',
         items: ['layouts', 'pages'],
@@ -12,15 +14,32 @@ export const sideNavSections: SideNavSection[] = [
     {
         text: 'ADDONS',
         items: ['charts', 'tables'],
-    },
+    },*/
 ];
 
 export const sideNavItems: SideNavItems = {
     dashboard: {
         icon: 'tachometer-alt',
-        text: 'Dashboard',
+        text: 'Inicio',
         link: '/dashboard',
     },
+    reparaciones: {
+        icon: 'tachometer-alt',
+        text: 'Reparaciones',
+        link: '/app/reparaciones',
+    },
+    reportes: {
+        icon: 'tachometer-alt',
+        text: 'Reportes',
+        link: '/app/reportes',
+    },
+    clientes: {
+        icon: 'tachometer-alt',
+        text: 'Gestion Clientes',
+        link: '/app/gestion-clientes',
+    },
+    /*
+    @TODO: Eliminar
     layouts: {
         icon: 'columns',
         text: 'Layouts',
@@ -84,5 +103,5 @@ export const sideNavItems: SideNavItems = {
         icon: 'table',
         text: 'Tables',
         link: '/tables',
-    },
+    },*/
 };

@@ -17,7 +17,7 @@ export const ROUTES: Routes = [
     {
         path: '',
         data: {
-            title: 'Dashboard - SB Admin Angular',
+            title: 'Inicio - Reparamos',
             breadcrumbs: [
                 {
                     text: 'Dashboard',

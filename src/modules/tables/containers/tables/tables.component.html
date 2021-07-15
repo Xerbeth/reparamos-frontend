@@ -1,8 +1,21 @@
-<sb-layout-dashboard
-    ><sb-dashboard-head title="Tables" [hideBreadcrumbs]="false"></sb-dashboard-head
-    ><sb-card
-        ><div class="card-body">The table below is adapted from ng-bootsrap. For more information, please visit the <a target="_blank" href="https://ng-bootstrap.github.io/#/components/table/overview">ng-bootstrap table documentation</a>.</div></sb-card
-    ><sb-card
-        ><div class="card-header"><fa-icon class="mr-1" [icon]='["fas", "table"]'></fa-icon>DataTable Example</div>
-        <div class="card-body"><sb-ng-bootstrap-table [pageSize]="6"></sb-ng-bootstrap-table></div></sb-card
-></sb-layout-dashboard>
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Reparaciones" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <sb-card>
+        <div class="card-body">Señor usuario, esta vista presenta las reparaciones sin saldar actuales. Para conocer la información general\rde todas las reparaciones debe realizar la consulta por el menú de 
+            <a target="_blank" href="https://ng-bootstrap.github.io/#/components/table/overview">Reportes</a>.
+        </div>
+    </sb-card>
+    <div class="btn-group btn-group-toggle mb-4">
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton> 
+          Agregar reparación
+        </label>
+    </div>
+    <sb-card>
+        <div class="card-header">
+            <fa-icon class="mr-1" [icon]='["fas", "table"]'></fa-icon>
+            Reparaciones
+        </div>
+        <div class="card-body"><sb-ng-bootstrap-table [pageSize]="6"></sb-ng-bootstrap-table></div>
+    </sb-card>
+</sb-layout-dashboard>

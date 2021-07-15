@@ -15,18 +15,54 @@ import { SBRouteData } from '@modules/navigation/models';
 /* Routes */
 export const ROUTES: Routes = [
     {
-        path: '',
+        path: 'reparaciones',
         canActivate: [],
         component: tablesContainers.TablesComponent,
         data: {
-            title: 'Tables - SB Admin Angular',
+            title: 'Inicio - Reparamos',
             breadcrumbs: [
                 {
-                    text: 'Dashboard',
-                    link: '/dashboard',
+                    text: 'Inicio',
+                    link: '/app',
                 },
                 {
-                    text: 'Tables',
+                    text: 'Reparaciones',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+    },
+    {
+        path: 'reportes',
+        canActivate: [],
+        component: tablesContainers.ReportesComponent,
+        data: {
+            title: 'Inicio - Reparamos',
+            breadcrumbs: [
+                {
+                    text: 'Inicio',
+                    link: '/app',
+                },
+                {
+                    text: 'Reportes',
+                    active: true,
+                },
+            ],
+        } as SBRouteData,
+    },
+    {
+        path: 'gestion-clientes',
+        canActivate: [],
+        component: tablesContainers.GestionClienteComponent,
+        data: {
+            title: 'Inicio - Reparamos',
+            breadcrumbs: [
+                {
+                    text: 'Inicio',
+                    link: '/app',
+                },
+                {
+                    text: 'Gestion Clientes',
                     active: true,
                 },
             ],
