@@ -10,7 +10,7 @@ export class AuthService {
     constructor(private general: GeneralService) {}
 
     getAuth$(dataForm: LoginRequest): Observable<LoginResponse> {
-        return this.general.post('/api/v1/users/validateLogin', {
+        return this.general.post('api/v1/users/validateLogin', {
             ...dataForm
         });
     }
