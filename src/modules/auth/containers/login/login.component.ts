@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
                 }
                 this.router.navigate(['/dashboard']);
             },
-            error: () => Swal.fire('Error', 'Ha ocurrido un error', 'error');
+            error: () => Swal.fire('Error', 'Ha ocurrido un error', 'error')
         })
     }
 }
