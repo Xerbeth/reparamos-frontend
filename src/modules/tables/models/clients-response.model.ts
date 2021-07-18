@@ -1,11 +1,15 @@
 export interface Client {
     id: number;
     address: string;
-    fullName: string;
+    documentTypeId?: string;
     documentTypeCode: string;
+    surname: string,
+    firstName: string;
     document: string;
+    secondName: string;
     dateBirth: string;
     phoneNumber: string;
+    secondSurname: string;
 }
 
 export interface ClientsResponse {

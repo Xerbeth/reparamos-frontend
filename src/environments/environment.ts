@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    mockData: false,
+    mockData: true,
     api : {
         url_api : 'http://localhost:2323'
     }

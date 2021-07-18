@@ -14,5 +14,9 @@ body {
 }
 
 .reparamos-modal {
-  z-index: 9999;
+  z-index: 1092;
+}
+
+.swal2-container{
+  z-index: 999999 !important;
 }
