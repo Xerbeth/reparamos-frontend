@@ -13,6 +13,11 @@ export class ClientesService {
     
     constructor(private general: GeneralService) {}
 
+    /**
+     * Servicio para obtener todos los clientes
+     * @returns {Observable<ClientsResponse>}
+     * @memberof ClientesService
+     */
     getClients$(): Observable<ClientsResponse> {
         if(environment.mockData){
             return of({
@@ -36,6 +41,11 @@ export class ClientesService {
         return this.general.get('api/v1/Persons/GetAllPersons', true);
     }
 
+    /**
+     * Servicio para obtener todos los tipos de documento
+     * @returns {Observable<ClientsResponse>}
+     * @memberof ClientesService
+     */
     public getDocumentTypes$() : Observable<DocumentsResponse> {
         if(environment.mockData){
             return of({
@@ -59,6 +69,11 @@ export class ClientesService {
         return this.general.get('api/v1/documentTypes/findAllDocumentType', true);
     }
 
+    /**
+     * Servicio para crear un cliente a partir de la carga util
+     * @returns {Observable<ClientsResponse>}
+     * @memberof ClientesService
+     */
     public createClient$( dataForm: Client ) : Observable<CreateClientResponse> {
         if(environment.mockData){
             return of({
@@ -73,6 +88,30 @@ export class ClientesService {
         });
     }
 
+    /**
+     * Servicio para actualizar el cliente a partir de una carga util
+     * @returns {Observable<ClientsResponse>}
+     * @memberof ClientesService
+     */
+    public updateClient$( dataForm: Client ) : Observable<CreateClientResponse> {
+        if(environment.mockData){
+            return of({
+                t: true,
+                message: "OK",
+                exception: "OK",
+                status: false
+            });
+        }
+        return this.general.put('api/v1/Transactions/UpdatePerson', {
+            ...dataForm
+        });
+    }
+
+    /**
+     * Servicio para eliminar el cliente a partir de una carga util
+     * @returns {Observable<ClientsResponse>}
+     * @memberof ClientesService
+     */
     public deleteClient$( client: Client ) : Observable<CreateClientResponse> {
         if(environment.mockData){
             return of({

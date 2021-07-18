@@ -18,10 +18,12 @@ export class GestionClienteComponent implements OnInit {
     public documentTypes: DocumentNode[] = [];
     public modalLabelsList = {
         create: {
-            title: "Crear Cliente"
+            title: "Crear Cliente",
+            success: 'El usuario se ha creado satisfactoriamente'
         },
         update: {
-            title: "Actualizar Cliente"
+            title: "Actualizar Cliente",
+            success: 'El usuario se ha creado satisfactoriamente'
         }
     };
     public modalLabels = this.modalLabelsList.create;
@@ -50,20 +52,33 @@ export class GestionClienteComponent implements OnInit {
         this.getAllDocumentTypes();
     }
 
-    public getAllClients(){
+    /**
+     * Obtiene todos los clientes
+     * @memberof GestionClienteComponent
+     */
+    public getAllClients(): void {
         this.clientsService.getClients$().subscribe({
             next: ({ t }) => this.clients = t,
             error: () => Swal.fire('Error al obtener clientes', 'Ha ocurrido un error', 'error')
         });
     }
 
-    public getAllDocumentTypes(){
+    /**
+     * Obtiene todos los tipos de documento
+     * @memberof GestionClienteComponent
+     */
+    public getAllDocumentTypes(): void{
         this.clientsService.getDocumentTypes$().subscribe({
             next: ({ t }) => this.documentTypes = t,
             error: () => Swal.fire('Error al obtener documentos', 'Ha ocurrido un error', 'error')
         });      
     }
 
+    /**
+     * Envia el formulario de creacion / Actualizacion de un cliente
+     * @returns
+     * @memberof GestionClienteComponent
+     */
     public sendForm(){
         if(this.clientForm.invalid){
             Swal.fire('Error', 'Hay campos incorrectos', 'error');
@@ -82,13 +97,17 @@ export class GestionClienteComponent implements OnInit {
             cancelButtonText: `Cancelar`
         }).then((result) => {
             if (result.isConfirmed) {
-                this.clientsService.createClient$(userData).subscribe({
+                const clientTransaction = this.clientForm.controls.id ? 
+                                          this.clientsService.createClient$(userData) :
+                                          this.clientsService.updateClient$(userData);
+
+                clientTransaction.subscribe({
                     next: ({ t, exception }) => {
                         if( !t ){
                             Swal.fire('Error', exception, 'error');
                             return;
                         }
-                        Swal.fire('Exito', 'El usuario se ha creado satisfactoriamente', 'success');
+                        Swal.fire('Exito', this.modalLabels.success, 'success');
                         this.clientForm.reset();
                         this.modalService.dismissAll();
                         this.getAllClients();
@@ -99,6 +118,11 @@ export class GestionClienteComponent implements OnInit {
         });
     }
 
+    /**
+     * Despliega el modal para eliminacion de cliente
+     * @param {Client} client
+     * @memberof GestionClienteComponent
+     */
     public deleteForm(client: Client){
         Swal.fire({
             title: '¿ Esta seguro de eliminar el registro ?',
@@ -123,14 +147,25 @@ export class GestionClienteComponent implements OnInit {
         });
     }
 
+    /**
+     * Organiza los datos para iterar los clientes en el ngFor
+     * @param {number} index
+     * @param {DocumentNode} item
+     * @returns
+     * @memberof GestionClienteComponent
+     */
     public identify(index:number, item: DocumentNode){
         return item.id; 
     }
 
+    /**
+     * Despliega el modal para creacion / actualizacion de cliente
+     * @param {Client} client
+     * @memberof GestionClienteComponent
+     */
     public open(content: TemplateRef<any>, data?: Client) {
         this.clientForm.controls.documentTypeId.setValue( _.head(this.documentTypes)?.id );
         if( data) {
-            debugger;
             data.documentTypeId = this.documentTypes.find( item => item.documentTypeCode === data.documentTypeCode)?.id;
             this.clientForm.setValue( data );
         }
