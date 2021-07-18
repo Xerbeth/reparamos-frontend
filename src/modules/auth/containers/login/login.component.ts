@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
             next: ({ t }) => {
                 if( !t.access ){
                     Swal.fire('Error', 'Usuario o contraseña incorrecta', 'error');
+                    return;
                 }
                 this.router.navigate(['/dashboard']);
             },
