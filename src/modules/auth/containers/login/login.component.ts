@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
     
     public userForm = new FormGroup({
-        user: new FormControl('', [ Validators.required ]),
-        password: new FormControl('', [ Validators.required ]),
+        user: new FormControl('Ruben', [ Validators.required ]),
+        password: new FormControl('Pruebas123*', [ Validators.required, Validators.pattern(/^[^#!?^¿|°]+$/) ]),
     });
 
     constructor(
@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
     ngOnInit() {}
 
     public authUser(){
+        if(this.userForm.invalid){
+            Swal.fire('Error', 'Hay campos incorrectos', 'error');
+            return;
+        }
         const loginData = this.userForm.getRawValue();
         this.auth.getAuth$(loginData).subscribe({
             next: ({ t }) => {
@@ -36,7 +40,7 @@ export class LoginComponent implements OnInit {
                 }
                 this.session.setInfo('authData',{
                     roleCode: t.roleCode,
-                    user: loginData.User
+                    user: loginData.user
                 })
                 this.router.navigate(['/dashboard']);
             },

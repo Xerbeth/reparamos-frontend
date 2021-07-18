@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppCommonGuard } from '@common/guards';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
     },*/
     {
         path: 'dashboard',
+        canActivate: [ AppCommonGuard ],
         loadChildren: () =>
             import('modules/dashboard/dashboard-routing.module').then(
                 m => m.DashboardRoutingModule
