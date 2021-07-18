@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services';
+import { LocalStorageService } from '@modules/utility/services/session-storage.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,12 +14,13 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
     
     public userForm = new FormGroup({
-        user: new FormControl('', [ Validators.required ]),
-        password: new FormControl('', [ Validators.required ]),
+        User: new FormControl('', [ Validators.required ]),
+        Password: new FormControl('', [ Validators.required ]),
     });
 
     constructor(
         protected auth: AuthService,
+        protected session: LocalStorageService,
         private router: Router
     ) {}
     
@@ -32,6 +34,10 @@ export class LoginComponent implements OnInit {
                     Swal.fire('Error', 'Usuario o contraseña incorrecta', 'error');
                     return;
                 }
+                this.session.setInfo('authData',{
+                    roleCode: t.roleCode,
+                    user: loginData.User
+                })
                 this.router.navigate(['/dashboard']);
             },
             error: () => Swal.fire('Error', 'Ha ocurrido un error', 'error')
