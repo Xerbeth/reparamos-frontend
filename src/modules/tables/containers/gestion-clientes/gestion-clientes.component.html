@@ -1,7 +1,7 @@
 <sb-layout-dashboard>
     <sb-dashboard-head title="Gestión Clientes" [hideBreadcrumbs]="false"></sb-dashboard-head>
     <div class="btn-group btn-group-toggle mb-4">
-        <label class="btn-primary" ngbButtonLabel>
+        <label class="btn-primary" ngbButtonLabel (click)="open(content)">
           Agregar Cliente
         </label>
     </div>
@@ -40,10 +40,10 @@
                         <td>{{ client.dateBirth }}</td>
                         <td>{{ client.phoneNumber }}</td>
                         <td>
-                            <label class="btn-primary mr-2" ngbButtonLabel>
+                            <label class="btn-primary mr-2" ngbButtonLabel (click)="open(content)">
                                 Editar
                             </label>
-                            <label class="btn-primary" ngbButtonLabel>
+                            <label class="btn-primary" ngbButtonLabel (click)="open(content)">
                                 Eliminar
                             </label>
                         </td>
@@ -53,3 +53,28 @@
         </div>
     </sb-card>
 </sb-layout-dashboard>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
