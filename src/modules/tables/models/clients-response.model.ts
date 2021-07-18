@@ -1,3 +1,5 @@
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
+
 export interface Client {
     id: number;
     address: string;
@@ -7,7 +9,7 @@ export interface Client {
     firstName: string;
     document: string;
     secondName: string;
-    dateBirth: string;
+    dateBirth: string | NgbDate;
     phoneNumber: string;
     secondSurname: string;
 }

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Client } from '@modules/tables/models/clients-response.model';
 import { DocumentNode } from '@modules/tables/models/documents-response.model';
 import { ClientesService } from '@modules/tables/services/clientes.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
 
@@ -31,15 +31,15 @@ export class GestionClienteComponent implements OnInit {
     public clientForm = new FormGroup({
         id: new FormControl(''),
         documentTypeCode: new FormControl(''),
-        firstName: new FormControl('', [ Validators.required ]),
-        secondName: new FormControl(''),
+        firstName: new FormControl('', [ Validators.required, Validators.maxLength(15) ]),
+        secondName: new FormControl('', [ Validators.maxLength(15) ]),
         surname: new FormControl('', [ Validators.required ]),
-        secondSurname: new FormControl(''),
+        secondSurname: new FormControl('', [ Validators.maxLength(15) ] ),
         documentTypeId: new FormControl('', [ Validators.required ]),
         document: new FormControl('', [ Validators.required ]),
         dateBirth: new FormControl('', [ Validators.required ]),
-        phoneNumber: new FormControl('', [ Validators.required ]),
-        address: new FormControl('', [ Validators.required ]),
+        phoneNumber: new FormControl('', [ Validators.required, Validators.maxLength(15) ]),
+        address: new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
     });
 
     constructor(
@@ -84,11 +84,6 @@ export class GestionClienteComponent implements OnInit {
             Swal.fire('Error', 'Hay campos incorrectos', 'error');
             return;
         }
-        const userData = this.clientForm.getRawValue();
-        const { day, month, year } = userData.dateBirth;
-        this.clientForm.controls.dateBirth.setValue(
-            `${year}-${ month < 10 ? `0${month}` : month }-${ day < 10 ? `0${day}` : day }T12:00:00.000`
-        );
         Swal.fire({
             title: '¿ Esta seguro de almacenar los cambios ?',
             showDenyButton: true,
@@ -97,6 +92,11 @@ export class GestionClienteComponent implements OnInit {
             cancelButtonText: `Cancelar`
         }).then((result) => {
             if (result.isConfirmed) {
+                const userData = this.clientForm.getRawValue();
+                const { day, month, year } = userData.dateBirth;
+                this.clientForm.controls.dateBirth.setValue(
+                    `${year}-${ month < 10 ? `0${month}` : month }-${ day < 10 ? `0${day}` : day }T12:00:00.000`
+                );
                 const clientTransaction = _.isNil(this.clientForm.controls.id) ? 
                                           this.clientsService.createClient$(this.clientForm.getRawValue()) :
                                           this.clientsService.updateClient$(this.clientForm.getRawValue());
@@ -164,21 +164,21 @@ export class GestionClienteComponent implements OnInit {
      * @memberof GestionClienteComponent
      */
     public open(content: TemplateRef<any>, data?: Client) {
+        const clientData = _.cloneDeep(data);
         this.clientForm.controls.documentTypeId.setValue( _.head(this.documentTypes)?.id );
-        if( data) {
-            data.documentTypeId = this.documentTypes.find( item => item.documentTypeCode === data.documentTypeCode)?.id;
-            this.clientForm.setValue( data );
+        if( clientData ) {
+            clientData.documentTypeId = this.documentTypes.find( item => item.documentTypeCode === clientData.documentTypeCode)?.id;
+            const birth = new Date(`${clientData.dateBirth}`);
+            clientData.dateBirth = new NgbDate( birth.getFullYear(), birth.getMonth(), birth.getDate() );
+            this.clientForm.setValue( clientData );
         }
-        this.modalLabels = data ? this.modalLabelsList.update : this.modalLabelsList.create;
+        this.modalLabels = clientData ? this.modalLabelsList.update : this.modalLabelsList.create;
         this.modalService.open(content, { 
             ariaLabelledBy: 'modal-basic-title', 
             windowClass: 'reparamos-modal' 
         }).result.then(
-            (result) => {
-                console.warn(`Closed with: ${result}`);
-            }, (reason) => {
-                console.warn(`dissmised: ${reason}`)
-            }
+            (result) => this.clientForm.reset(), 
+            (reason) => this.clientForm.reset()
         );
     }
 }
