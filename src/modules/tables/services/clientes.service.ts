@@ -42,11 +42,13 @@ export class ClientesService {
                 t: [
                   {
                     id: 1,
-                    documentType: "Cédula de ciudadanía"
+                    documentType: "Cédula de ciudadanía",
+                    documentTypeCode: "CC"
                   },
                   {
                     id: 2,
-                    documentType: "Tarjeta de extranjería"
+                    documentType: "Tarjeta de extranjería",
+                    documentTypeCode: "CE"
                   }
                 ],
                 message: "Transacción realizada correctamente.",
@@ -69,5 +71,17 @@ export class ClientesService {
         return this.general.post('api/v1/Transactions/CreatePerson', {
             ...dataForm
         });
+    }
+
+    public deleteClient$( client: Client ) : Observable<CreateClientResponse> {
+        if(environment.mockData){
+            return of({
+                t: true,
+                message: "OK",
+                exception: "OK",
+                status: false
+            });
+        }
+        return this.general.delete(`api/v1/Persons/deletePerson/${ client.id }`);
     }
 }

@@ -37,13 +37,13 @@
                         <td>{{ client.firstName }} {{ client.surname }}</td>
                         <td>{{ client.documentTypeCode }}</td>
                         <td>{{ client.document }}</td>
-                        <td>{{ client.dateBirth }}</td>
+                        <td>{{ client.dateBirth | date:'MMM d, y, h:mm:ss a' }}</td>
                         <td>{{ client.phoneNumber }}</td>
                         <td>
-                            <label class="btn-primary mr-2" ngbButtonLabel (click)="open(content)">
+                            <label class="btn-primary mr-2" ngbButtonLabel (click)="open(content, client)">
                                 Editar
                             </label>
-                            <label class="btn-primary" ngbButtonLabel (click)="open(content)">
+                            <label class="btn-primary" ngbButtonLabel (click)="deleteForm(client)">
                                 Eliminar
                             </label>
                         </td>

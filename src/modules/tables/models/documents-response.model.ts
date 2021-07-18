@@ -1,6 +1,7 @@
 export interface DocumentNode {
     id: number;
     documentType: string;
+    documentTypeCode: string;
 }
 
 export interface DocumentsResponse {

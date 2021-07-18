@@ -70,4 +70,9 @@ export class GeneralService {
     const headers = this.obtenerEncabezados();
     return this.http.put<T>(`${API.url_api}/${url}`, model, { headers, params });
   }
+
+  public delete<T>(url: string, params?:HttpParams): Observable<any> {
+    const headers = this.obtenerEncabezados();
+    return this.http.delete<T>(`${API.url_api}/${url}`, { headers, params });
+  }
 }
