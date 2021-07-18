@@ -32,7 +32,7 @@ export class GestionClienteComponent implements OnInit {
         id: new FormControl(''),
         documentTypeCode: new FormControl(''),
         firstName: new FormControl('', [ Validators.required ]),
-        secondName: new FormControl('', [ Validators.required ]),
+        secondName: new FormControl(''),
         surname: new FormControl('', [ Validators.required ]),
         secondSurname: new FormControl('', [ Validators.required ]),
         documentTypeId: new FormControl('', [ Validators.required ]),
