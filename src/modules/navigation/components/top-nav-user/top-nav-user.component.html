@@ -3,14 +3,13 @@
     <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownUser">
         <h6 class="dropdown-header">
             <div class="dropdown-user-details">
-                <div class="dropdown-user-details-name">{{ user.firstName }} {{ user.lastName }}</div>
-                <div class="dropdown-user-details-email">{{ user.email }}</div>
+                <div class="dropdown-user-details-name">Hola {{ user.user }}!</div>
             </div>
         </h6>
         <!--<div class="dropdown-divider"></div>
             @TODO: Eliminar
         <a class="dropdown-item" routerLink="/dashboard">Settings</a><a class="dropdown-item" routerLink="/dashboard">Activity Log</a>
         <div class="dropdown-divider"></div>-->
-        <a class="dropdown-item" routerLink="/dashboard">Cerrar Sesión</a>
+        <a class="dropdown-item" (click)="closeSession()">Cerrar Sesión</a>
     </div>
 </li>

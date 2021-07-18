@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LocalStorageService } from '@modules/utility/services/session-storage.service';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { User } from '../models';
@@ -7,12 +8,13 @@ const userSubject: ReplaySubject<User> = new ReplaySubject(1);
 
 @Injectable()
 export class UserService {
-    constructor() {
+
+    constructor(
+        protected session: LocalStorageService) {
+        const data = this.session.loadInfo('authData') as User;
         this.user = {
-            id: '123',
-            firstName: 'Start',
-            lastName: 'Bootstrap',
-            email: 'no-reply@startbootstrap.com',
+            user: data.user,
+            roleCode: data.roleCode
         };
     }
 
