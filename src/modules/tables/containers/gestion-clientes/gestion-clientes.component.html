@@ -1,50 +1,55 @@
 <sb-layout-dashboard>
     <sb-dashboard-head title="Gestión Clientes" [hideBreadcrumbs]="false"></sb-dashboard-head>
-    <sb-card>
     <div class="btn-group btn-group-toggle mb-4">
         <label class="btn-primary" ngbButtonLabel>
-          <input type="checkbox" ngbButton> 
           Agregar Cliente
         </label>
     </div>
-    <div class="card-header">
-        <fa-icon class="mr-1" [icon]='["fas", "table"]'></fa-icon>
-        Lista de Clientes
-    </div>
-    <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col" sortable="name">Dirección</th>
-                    <th scope="col" sortable="area">Nombre</th>
-                    <th scope="col" sortable="population">Tipo Documento</th>
-                    <th scope="col" sortable="population">Documento</th>
-                    <th scope="col" sortable="population">Fecha Nacimiento</th>
-                    <th scope="col" sortable="population">Telefono</th>
-                    <th scope="col" sortable="population">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let client of clients">
-                    <th scope="row">{{ client.id }}</th>
-                    <td>{{ client.address }}</td>
-                    <td>{{ client.fullName }}</td>
-                    <td>{{ client.documentTypeCode }}</td>
-                    <td>{{ client.document }}</td>
-                    <td>{{ client.dateBirth }}</td>
-                    <td>{{ client.phoneNumber }}</td>
-                    <td>
-                        <label class="btn-primary mr-2" ngbButtonLabel>
-                            Editar
-                        </label>
-                        <label class="btn-primary" ngbButtonLabel>
-                            Eliminar
-                        </label>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <sb-card>
+        <div class="btn-group btn-group-toggle mb-4">
+            <label class="btn-primary" ngbButtonLabel>
+            <input type="checkbox" ngbButton> 
+            Agregar Cliente
+            </label>
+        </div>
+        <div class="card-header">
+            <fa-icon class="mr-1" [icon]='["fas", "table"]'></fa-icon>
+            Lista de Clientes
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col" sortable="name">Dirección</th>
+                        <th scope="col" sortable="area">Nombre</th>
+                        <th scope="col" sortable="population">Tipo Documento</th>
+                        <th scope="col" sortable="population">Documento</th>
+                        <th scope="col" sortable="population">Fecha Nacimiento</th>
+                        <th scope="col" sortable="population">Telefono</th>
+                        <th scope="col" sortable="population">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of clients">
+                        <th scope="row">{{ client.id }}</th>
+                        <td>{{ client.address }}</td>
+                        <td>{{ client.fullName }}</td>
+                        <td>{{ client.documentTypeCode }}</td>
+                        <td>{{ client.document }}</td>
+                        <td>{{ client.dateBirth }}</td>
+                        <td>{{ client.phoneNumber }}</td>
+                        <td>
+                            <label class="btn-primary mr-2" ngbButtonLabel>
+                                Editar
+                            </label>
+                            <label class="btn-primary" ngbButtonLabel>
+                                Eliminar
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </sb-card>
 </sb-layout-dashboard>

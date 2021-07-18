@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
     
     public userForm = new FormGroup({
-        User: new FormControl('', [ Validators.required ]),
-        Password: new FormControl('', [ Validators.required ]),
+        user: new FormControl('', [ Validators.required ]),
+        password: new FormControl('', [ Validators.required ]),
     });
 
     constructor(
