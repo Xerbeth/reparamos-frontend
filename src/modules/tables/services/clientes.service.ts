@@ -102,7 +102,7 @@ export class ClientesService {
                 status: false
             });
         }
-        return this.general.put('api/v1/Transactions/UpdatePerson', {
+        return this.general.put('api/v1/Persons/UpdatePerson', {
             ...dataForm
         });
     }
