@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Client } from '@modules/tables/models/clients-response.model';
 import { ClientesService } from '@modules/tables/services/clientes.service';
 import { Observable } from 'rxjs';
@@ -15,13 +15,17 @@ export class GestionClienteComponent implements OnInit {
     public clients: Client[] = [];
 
     constructor(
-        protected clientsService: ClientesService
+        protected clientsService: ClientesService,
+        private changeDetectorRef: ChangeDetectorRef
     ) {}
     
     ngOnInit() {
         this.clientsService.getClients$().subscribe({
             next: ({ t }) => this.clients = t,
-            error: () => Swal.fire('Error', 'Ha ocurrido un error', 'error')
+            error: () => Swal.fire('Error', 'Ha ocurrido un error', 'error'),
+            complete: () => {
+                this.changeDetectorRef.detectChanges();
+            }
         })
     }
 }
