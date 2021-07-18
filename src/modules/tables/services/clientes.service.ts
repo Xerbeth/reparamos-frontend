@@ -121,6 +121,6 @@ export class ClientesService {
                 status: false
             });
         }
-        return this.general.delete(`api/v1/Persons/deletePerson/${ client.id }`);
+        return this.general.delete(`api/v1/Persons/DeletePerson/${ client.id }`);
     }
 }

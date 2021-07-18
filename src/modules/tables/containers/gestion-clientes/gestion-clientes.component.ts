@@ -34,7 +34,7 @@ export class GestionClienteComponent implements OnInit {
         firstName: new FormControl('', [ Validators.required ]),
         secondName: new FormControl(''),
         surname: new FormControl('', [ Validators.required ]),
-        secondSurname: new FormControl('', [ Validators.required ]),
+        secondSurname: new FormControl(''),
         documentTypeId: new FormControl('', [ Validators.required ]),
         document: new FormControl('', [ Validators.required ]),
         dateBirth: new FormControl('', [ Validators.required ]),
@@ -98,8 +98,8 @@ export class GestionClienteComponent implements OnInit {
         }).then((result) => {
             if (result.isConfirmed) {
                 const clientTransaction = this.clientForm.controls.id ? 
-                                          this.clientsService.createClient$(userData) :
-                                          this.clientsService.updateClient$(userData);
+                                          this.clientsService.createClient$(this.clientForm.getRawValue()) :
+                                          this.clientsService.updateClient$(this.clientForm.getRawValue());
 
                 clientTransaction.subscribe({
                     next: ({ t, exception }) => {
