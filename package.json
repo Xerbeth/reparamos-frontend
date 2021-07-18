@@ -18,7 +18,7 @@
         "lint": "npm run ng -- lint",
         "ng": "cross-env NODE_OPTIONS=--max_old_space_size=2048 ./node_modules/.bin/ng",
         "serve": "./node_modules/.bin/static-server dist/sb-admin-angular",
-        "start": "node scripts/start.js",
+        "start": "ng serve",
         "test": "npm run ng -- test"
     },
     "private": true,
@@ -41,6 +41,7 @@
         "chart.js": "2.9.4",
         "object-hash": "2.0.3",
         "rxjs": "6.6.3",
+        "sweetalert2": "^11.0.18",
         "tslib": "2.0.3",
         "uuid": "8.3.1",
         "webpack-bundle-analyzer": "4.1.0",

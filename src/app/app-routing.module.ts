@@ -5,13 +5,15 @@ const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/dashboard',
+        redirectTo: '/auth/login',
     },
+    /*
+    @TODO: eliminar
     {
         path: 'charts',
         loadChildren: () =>
             import('modules/charts/charts-routing.module').then(m => m.ChartsRoutingModule),
-    },
+    },*/
     {
         path: 'dashboard',
         loadChildren: () =>

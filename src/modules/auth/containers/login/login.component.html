@@ -12,9 +12,15 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Usuario</label><input class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Usuario" /></div>
-                            <div class="form-group"><label class="small mb-1" for="inputPassword">Contraseña</label><input class="form-control py-4" id="inputPassword" type="password" placeholder="Contraseña" /></div>
+                        <form [formGroup]="userForm" (ngSubmit)="authUser()">
+                            <div class="form-group">
+                                <label class="small mb-1" for="inputEmailAddress" >Usuario</label>
+                                <input class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Usuario" formControlName="user" />
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="inputPassword">Contraseña</label>
+                                <input class="form-control py-4" id="inputPassword" type="password" placeholder="Contraseña" formControlName="pwd" />
+                            </div>
                             <!-- 
                                 @TODO: Eliminar
                                 <div class="form-group">
@@ -23,7 +29,7 @@
                                 <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" routerLink="/auth/forgot-password">Forgot Password?</a><a class="btn btn-primary" routerLink="/dashboard">Login</a></div>
                             -->
                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                <a class="btn btn-primary" routerLink="/dashboard">Iniciar sesión</a>
+                                <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary" >Iniciar sesión</button>
                             </div>
                         </form>
                     </div>
