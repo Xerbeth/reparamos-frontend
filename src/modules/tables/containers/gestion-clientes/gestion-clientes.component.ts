@@ -97,7 +97,7 @@ export class GestionClienteComponent implements OnInit {
             cancelButtonText: `Cancelar`
         }).then((result) => {
             if (result.isConfirmed) {
-                const clientTransaction = this.clientForm.controls.id ? 
+                const clientTransaction = _.isNil(this.clientForm.controls.id) ? 
                                           this.clientsService.createClient$(this.clientForm.getRawValue()) :
                                           this.clientsService.updateClient$(this.clientForm.getRawValue());
 

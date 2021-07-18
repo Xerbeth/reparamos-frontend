@@ -66,7 +66,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-sm mb-3">
-              <label for="dateOfBirth">Primer Nombre</label>
+              <label for="dateOfBirth">Primer Nombre <span class="field-mandatory">*</span> </label>
               <div class="input-group">
                 <input id="firstName" name="firstName" formControlName="firstName" class="form-control" placeholder="Tu nombre">
               </div>
@@ -80,7 +80,7 @@
           </div>
           <div class="row">
             <div class="col-sm mb-3">
-              <label for="dateOfBirth">Primer apellido</label>
+              <label for="dateOfBirth">Primer apellido <span class="field-mandatory">*</span></label>
               <div class="input-group">
                 <input id="surname" name="surname" formControlName="surname" class="form-control" placeholder="Primer apellido">
               </div>
@@ -94,7 +94,7 @@
           </div>
           <div class="row">
             <div class="col-sm mb-3">
-              <label for="dateOfBirth">Tipo de documento</label>
+              <label for="dateOfBirth">Tipo de documento <span class="field-mandatory">*</span></label>
               <div class="input-group">
                 <select name="documentTypeId" id="documentTypeId" formControlName="documentTypeId"  class="form-control">
                   <option [value]="documentType.id" *ngFor="let documentType of documentTypes; trackBy:identify">{{ documentType.documentType }}</option>
@@ -102,14 +102,14 @@
               </div>
             </div>
             <div class="col-sm mb-3">
-              <label for="dateOfBirth">documento</label>
+              <label for="dateOfBirth">documento <span class="field-mandatory">*</span></label>
               <div class="input-group">
                 <input id="document" name="document" formControlName="document" class="form-control" placeholder="Tu documento">
               </div>
             </div>
           </div>
           <div class="mb-3">
-            <label for="dateOfBirth">Fecha de Nacimiento</label>
+            <label for="dateOfBirth">Fecha de Nacimiento <span class="field-mandatory">*</span></label>
             <div class="input-group">
               <input id="dateBirth" name="dateBirth" formControlName="dateBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
               <div class="input-group-append">
@@ -119,13 +119,13 @@
           </div>
           <div class="row">
             <div class="col-sm mb-3">
-              <label for="dateOfBirth">Teléfono</label>
+              <label for="dateOfBirth">Teléfono <span class="field-mandatory">*</span></label>
               <div class="input-group">
                 <input id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Tu Telefono">
               </div>
             </div>
             <div class="col-sm mb-3">
-              <label for="dateOfBirth">Direccion</label>
+              <label for="dateOfBirth">Direccion <span class="field-mandatory">*</span></label>
               <div class="input-group">
                 <input id="address" name="address" formControlName="address" class="form-control" placeholder="Tu Direccion">
               </div>
