@@ -97,7 +97,7 @@ export class GestionClienteComponent implements OnInit {
                 this.clientForm.controls.dateBirth.setValue(
                     `${year}-${ month < 10 ? `0${month}` : month }-${ day < 10 ? `0${day}` : day }T12:00:00.000`
                 );
-                const clientTransaction = _.isNil(this.clientForm.controls.id.value) ? 
+                const clientTransaction = _.isEmpty(this.clientForm.controls.id.value) ? 
                                           this.clientsService.createClient$(this.clientForm.getRawValue()) :
                                           this.clientsService.updateClient$(this.clientForm.getRawValue());
 
