@@ -8,13 +8,6 @@ const routes: Routes = [
         pathMatch: 'full',
         redirectTo: '/auth/login',
     },
-    /*
-    @TODO: eliminar
-    {
-        path: 'charts',
-        loadChildren: () =>
-            import('modules/charts/charts-routing.module').then(m => m.ChartsRoutingModule),
-    },*/
     {
         path: 'dashboard',
         canActivate: [ AppCommonGuard ],

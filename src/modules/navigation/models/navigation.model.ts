@@ -18,6 +18,7 @@ export interface SideNavItem {
     icon?: string;
     text: string;
     link?: string;
+    roleCode?: string[];
     submenu?: SideNavItem[];
 }
 

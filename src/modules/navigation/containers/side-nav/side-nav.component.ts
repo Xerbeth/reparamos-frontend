@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@a
 import { UserService } from '@modules/auth/services';
 import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 import { NavigationService } from '@modules/navigation/services';
+import { LocalStorageService } from '@modules/utility/services/session-storage.service';
+import { User } from '@testing/mocks';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,9 +20,18 @@ export class SideNavComponent implements OnInit, OnDestroy {
     subscription: Subscription = new Subscription();
     routeDataSubscription!: Subscription;
 
-    constructor(public navigationService: NavigationService, public userService: UserService) {}
+    constructor(
+        public navigationService: NavigationService, 
+        public userService: UserService,
+        protected session: LocalStorageService,
+    ) {}
 
     ngOnInit() {}
+    
+    isRoleContains(roleCodes: string[] | undefined){
+        const userData = this.session.loadInfo('authData') as User;
+        return roleCodes?.includes(userData.roleCode);
+    }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();

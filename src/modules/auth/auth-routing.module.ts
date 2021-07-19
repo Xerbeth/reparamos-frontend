@@ -26,25 +26,7 @@ export const ROUTES: Routes = [
         data: {
             title: 'Iniciar sesion - Reparamos',
         } as SBRouteData,
-    },
-    /*
-    @TODO: Eliminar
-    {
-        path: 'register',
-        canActivate: [],
-        component: authContainers.RegisterComponent,
-        data: {
-            title: 'Pages Register - SB Admin Angular',
-        } as SBRouteData,
-    },
-    {
-        path: 'forgot-password',
-        canActivate: [],
-        component: authContainers.ForgotPasswordComponent,
-        data: {
-            title: 'Pages Forgot Password - SB Admin Angular',
-        } as SBRouteData,
-    },*/
+    }
 ];
 
 @NgModule({
